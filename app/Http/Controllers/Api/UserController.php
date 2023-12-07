@@ -102,9 +102,9 @@ class UserController extends Controller
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
             'username' => 'required|max:60',
-            'email' => 'required|email:rfc,dns|unique:users',
+            'email' => 'required',
             'password' => 'required|min:8',
-            'notelp' => 'required|regex:/^08[0-9]{9,11}$/',
+            'notelp' => 'required',
             'borndate'=> 'required',
         ]);
 
