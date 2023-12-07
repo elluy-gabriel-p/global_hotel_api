@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\HotelController;
 
 
 /*
@@ -27,3 +28,4 @@ Route::delete('/user/{id}', [App\Http\Controllers\Api\UserController::class, 'de
 Route::post('/updatePass', [App\Http\Controllers\Api\UserController::class, 'updatePassword']);
 
 Route::apiResource('kamar', KamarController::class);
+Route::apiResource('hotel', HotelController::class);
