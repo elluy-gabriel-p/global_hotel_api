@@ -103,7 +103,7 @@ class BookingController extends Controller
 
     public function checkIn(Request $request)
     {
-        $hasil = DB::table('booking')->where('id')->update(['status_check_in' => 1]);
+        $hasil = DB::table('booking')->where('id', '=', $request->id)->update(['status_check_in' => 1]);
         return response([
             'status' => true,
             'messege' => 'success check in'
