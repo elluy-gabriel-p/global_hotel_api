@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -12,7 +13,6 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -28,7 +28,16 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('review')->insert([
+            'id_kelas' => $request->id_kelas,
+            'komentar' => $request->komentar,
+            'id_user' => $request->id_user
+        ]);
+
+        return response([
+            'status' => true,
+            'message' => 'success add review'
+        ]);
     }
 
     /**
