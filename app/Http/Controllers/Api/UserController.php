@@ -28,8 +28,6 @@ class UserController extends Controller
             ], 400);
         }
 
-
-
         $user = User::create($registrasiData);
         return response([
             'status' => true,
@@ -54,8 +52,15 @@ class UserController extends Controller
 
         $user = User::where('username', $loginData['username'])->where('password', $loginData['password'])->get();
 
-
+        if (!is_null($user)) {
+            return response([
+                'status' => true,
+                'message' => 'Login Failed',
+                'user' => [],
+            ]);
+        }
         return response([
+            'status' => true,
             'message' => 'Authenticated',
             'user' => $user,
         ]);
