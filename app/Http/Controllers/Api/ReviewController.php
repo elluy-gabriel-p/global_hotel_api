@@ -29,7 +29,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         DB::table('review')->insert([
-            'id_kelas' => $request->id_kelas,
+            'id_kamar' => $request->id_kamar,
             'komentar' => $request->komentar,
             'id_user' => $request->id_user
         ]);
