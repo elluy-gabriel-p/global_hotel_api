@@ -43,17 +43,40 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $data = DB::table('review')
+            ->join('kamars', 'review.id_kamar', '=', 'kamars.id')
+            ->join('users', 'review.id_user', '=', 'users.id')
+            ->where('review.id_user', '=', $request->id)
+            ->select('review.*', 'users.username', 'kamars.tipe', 'kamars.harga')
+            ->get();
+
+        if (is_null($data)) {
+            return response([
+                'status' => false,
+                'message' => 'no data found',
+                'data' => []
+            ]);
+        }
+
+        return response([
+            'status' => true,
+            'message' => 'all data retrive',
+            'data' => $data
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        $data = DB::table('review')->where('id', '=', $request->id)->update(['komentar' => $request->komentar]);
+
+        return response([
+            'messege' => 'edit review success'
+        ]);
     }
 
     /**
@@ -67,8 +90,12 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        DB::table('review')->where('id', '=', $request->id)->delete();
+
+        return response([
+            'messege' => 'delete review success'
+        ]);
     }
 }

@@ -137,8 +137,12 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        DB::table('booking')->where('id', '=', $request->id)->delete();
+
+        return response([
+            'messege' => 'success batal booking'
+        ]);
     }
 }

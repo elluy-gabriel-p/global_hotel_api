@@ -39,6 +39,11 @@ Route::post('/booking', [BookingController::class, 'create']);
 Route::get('/getBooking', [BookingController::class, 'find']);
 Route::get('/getHistory', [BookingController::class, 'history']);
 Route::get('/checkIn', [BookingController::class, 'checkIn']);
+Route::get('/checkIn', [BookingController::class, 'checkIn']);
+Route::delete('/batalBooking', [BookingController::class, 'destroy']);
 
 
 Route::post('/addReview', [ReviewController::class, 'store']);
+Route::get('/getReview', [ReviewController::class, 'show']);
+Route::put('/editReview', [ReviewController::class, 'edit']);
+Route::delete('/deleteReview', [ReviewController::class, 'destroy']);
