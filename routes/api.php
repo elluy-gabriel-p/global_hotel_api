@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\BookingController;
 
 
 /*
@@ -33,3 +34,5 @@ Route::apiResource('kamar', KamarController::class);
 Route::apiResource('hotel', HotelController::class);
 
 Route::post('/review', [ReviewController::class, 'index']);
+
+Route::post('/booking', [BookingController::class, 'create']);
