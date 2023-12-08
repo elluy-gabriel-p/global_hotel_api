@@ -50,11 +50,12 @@ class UserController extends Controller
 
 
 
-        $user = User::where('username', $loginData['username'])->where('password', $loginData['password'])->get();
+        $user = User::where('username', $loginData['username'])->where('password', $loginData['password'])->first();
 
-        if (!is_null($user)) {
+
+        if (is_null($user)) {
             return response([
-                'status' => true,
+                'status' => false,
                 'message' => 'Login Failed',
                 'user' => [],
             ]);
