@@ -33,7 +33,7 @@ class BookingController extends Controller
 
         $data = DB::table('booking')->latest()->get();
 
-        if (!$request) {
+        if (!$result) {
             return response([
                 'status' => true,
                 'messege' => 'success booking',
