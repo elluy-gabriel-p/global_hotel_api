@@ -37,3 +37,5 @@ Route::post('/review', [ReviewController::class, 'index']);
 
 Route::post('/booking', [BookingController::class, 'create']);
 Route::get('/getBooking', [BookingController::class, 'find']);
+Route::get('/getHistory', [BookingController::class, 'history']);
+Route::get('/checkIn', [BookingController::class, 'checkIn']);

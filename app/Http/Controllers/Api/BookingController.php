@@ -57,6 +57,7 @@ class BookingController extends Controller
             ->join('users', 'booking.id_user', '=', 'users.id')
             ->join('kamars', 'booking.id_kamar', '=', 'kamars.id')
             ->where('booking.id_user', '=', $request->id)
+            ->where('status_check_in', '=', 0)
             ->select('booking.*', 'users.username', 'kamars.tipe', 'kamars.harga')
             ->get();
 
@@ -73,6 +74,40 @@ class BookingController extends Controller
             'messege' => 'success get data',
             'data' => $data
         ], 200);
+    }
+
+    public function history(Request $request)
+    {
+        $data = DB::table('booking')
+            ->join('users', 'booking.id_user', '=', 'users.id')
+            ->join('kamars', 'booking.id_kamar', '=', 'kamars.id')
+            ->where('booking.id_user', '=', $request->id)
+            ->where('status_check_in', '=', 1)
+            ->select('booking.*', 'users.username', 'kamars.tipe', 'kamars.harga')
+            ->get();
+
+        if (is_null($data)) {
+            return response([
+                'status' => false,
+                'messege' => 'no data found',
+                'data' => []
+            ], 401);
+        }
+
+        return response([
+            'status' => true,
+            'messege' => 'success get data',
+            'data' => $data
+        ], 200);
+    }
+
+    public function checkIn(Request $request)
+    {
+        $hasil = DB::table('booking')->where('id')->update(['status_check_in' => 1]);
+        return response([
+            'status' => true,
+            'messege' => 'success check in'
+        ]);
     }
 
     /**
