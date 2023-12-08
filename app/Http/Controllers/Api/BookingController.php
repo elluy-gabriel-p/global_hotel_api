@@ -31,7 +31,7 @@ class BookingController extends Controller
             'notelp' => $request->notelp
         ]);
 
-        $data = DB::table('booking')->latest()->get();
+        $data = DB::table('booking')->latest('id')->get();
 
         if (!$result) {
             return response([
