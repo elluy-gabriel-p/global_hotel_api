@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -28,7 +29,15 @@ class UserController extends Controller
             ], 400);
         }
 
-        $user = User::create($registrasiData);
+        $user = DB::table('users')->insert([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password,
+            'notelp' => $request->notelp,
+            'borndate' => $request->borndate,
+            'image' => 0
+        ]);
+        $user = DB::table('users')->latest()->first();
         return response([
             'status' => true,
             'message' => 'Register Success',
@@ -147,6 +156,19 @@ class UserController extends Controller
             'message' => 'Update User Fail',
             'data' => null
         ], 400);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $hasil = DB::table('users')->where('id', '=', $request->id)->update(['image' => $request->image]);
+
+        if (!is_null($hasil)) {
+            $res = DB::table('users')->where('id', '=', $request->id)->first();
+            return response([
+                'status' => 'update success',
+                'hasil' => $res
+            ]);
+        }
     }
 
     public function destroy(string $id)

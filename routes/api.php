@@ -27,6 +27,7 @@ Route::get('/user/{id}', [App\Http\Controllers\Api\UserController::class, 'show'
 Route::put('/user/{id}', [App\Http\Controllers\Api\UserController::class, 'update']);
 Route::delete('/user/{id}', [App\Http\Controllers\Api\UserController::class, 'destroy']);
 Route::post('/updatePass', [App\Http\Controllers\Api\UserController::class, 'updatePassword']);
+Route::put('/updateProfile', [App\Http\Controllers\Api\UserController::class, 'updateProfile']);
 
 Route::apiResource('kamar', KamarController::class);
 Route::apiResource('hotel', HotelController::class);
