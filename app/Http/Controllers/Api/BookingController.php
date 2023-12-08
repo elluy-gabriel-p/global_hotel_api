@@ -51,7 +51,7 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function find(Request $request)
     {
         $data = DB::table('booking')
             ->join('users', 'booking.id_user', '=', 'users.id')
