@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\Api\ReviewController;
 
 
 /*
@@ -29,3 +30,5 @@ Route::post('/updatePass', [App\Http\Controllers\Api\UserController::class, 'upd
 
 Route::apiResource('kamar', KamarController::class);
 Route::apiResource('hotel', HotelController::class);
+
+Route::post('/review', [ReviewController::class, 'index']);
