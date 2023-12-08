@@ -26,8 +26,8 @@ class BookingController extends Controller
             'id_user' => $request->id_user,
             'jumlah_orang' => $request->jumlah_orang,
             'jumlah_kamar' => $request->jumlah_kamar,
-            'tlg_check_in' => $request->tgl_check_in,
-            'tlg_check_out' => $request->tgl_check_out,
+            'tgl_check_in' => $request->tgl_check_in,
+            'tgl_check_out' => $request->tgl_check_out,
             'notelp' => $request->notelp
         ]);
 
